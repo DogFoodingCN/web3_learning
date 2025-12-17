@@ -2,8 +2,10 @@
 pragma solidity ^0.8.28;
 
 import {Counter} from "./Counter.sol";
+import {Test} from "forge-std/Test.sol";
 
-contract CounterTest {
+
+contract CounterTest is Test {
     Counter counter;
 
     function setUp() public {
@@ -22,5 +24,12 @@ contract CounterTest {
     function test_IncreasesByGivenAmount() public {
         counter.incBy(3);
         require(counter.x() == 3, " incBy should increase x by given amount");
+    }
+
+    function test_IncEmitsIncrementEvent() public {
+        vm.expectEmit();
+        emit Counter.Increment(1);
+
+        counter.inc();
     }
 }
