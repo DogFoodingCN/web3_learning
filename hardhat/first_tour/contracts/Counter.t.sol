@@ -28,8 +28,15 @@ contract CounterTest is Test {
 
     function test_IncEmitsIncrementEvent() public {
         vm.expectEmit();
-        emit Counter.Increment(1);
+        emit Counter.Increment(2);
 
-        counter.inc();
+        counter.incBy(2);
+    }
+
+    function testFuzz_Inc(uint8 x) public {
+            for (uint8 i =0; i < x; i++) {
+                    counter.inc();
+            }
+        require(counter.x() == x, " value after call inc x should be x");
     }
 }
