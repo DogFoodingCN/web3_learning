@@ -1,7 +1,10 @@
-import { defineConfig } from "hardhat/config";
+import hardhatToolboxViemPlugin from "@nomicfoundation/hardhat-toolbox-viem";
+import {defineConfig} from "hardhat/config";
+
 
 export default defineConfig({
-  solidity: {
-    version: "0.8.28",
-  },
+    plugins: [hardhatToolboxViemPlugin],
+    solidity: {
+        version: "0.8.28",
+    },
 });
